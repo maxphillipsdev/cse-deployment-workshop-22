@@ -33,7 +33,7 @@ router.post('/vote', async (req, res) => {
   const stats = await statsCollections.findOne({ crewmate });
 
   if (!stats || !crewmate)
-    return res.status(404).json({ error: 'No crewmate provided.' });
+    return res.status(400).json({ error: 'No crewmate provided.' });
 
   if (stats) {
     await statsCollections.updateOne({ crewmate }, { $inc: { votes: 1 } });
