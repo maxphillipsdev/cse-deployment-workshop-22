@@ -2,7 +2,9 @@ import React from 'react';
 import './App.css';
 
 const baseURL = () => {
-  return new URL(process.env.BACKEND_URI);
+  return new URL(
+    'https://cse-deployment-workshop-22-production.up.railway.app/'
+  );
 };
 
 function App() {
