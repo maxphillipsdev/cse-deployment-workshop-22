@@ -15,6 +15,14 @@ async function run() {
   // Import the routes from routes.js
   app.use('/', router);
 
+  // Register a health check endpoint
+  app.get('/health', (req, res) => {
+    res.send({
+      status: 'OK',
+      uptime: process.uptime(),
+    });
+  });
+
   app.listen(PORT);
 }
 
