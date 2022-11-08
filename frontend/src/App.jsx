@@ -6,13 +6,13 @@ function App() {
 
   const fetchResults = async () => {
     setResults([]);
-    fetch('/api/results')
+    fetch(`${process.env.BACKEND_URI}/api/results`)
       .then((res) => res.json())
       .then((data) => setResults(data));
   };
 
   const handleClick = async (crewmate) => {
-    await fetch('/api/vote', {
+    await fetch(`${process.env.BACKEND_URI}/api/vote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
