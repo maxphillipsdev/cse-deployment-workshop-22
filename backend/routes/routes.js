@@ -5,8 +5,12 @@ const router = Router();
 const db = client.db('sus');
 const statsCollections = db.collection('stats');
 
-function seedStats() {
-  if (statsCollections.countDocuments() === 0) {
+async function seedStats() {
+  console.log('Seeding stats...');
+
+  const documentCount = await statsCollections.countDocuments();
+
+  if (documentCount === 0) {
     statsCollections.insertMany([
       {
         crewmate: 'Red',
