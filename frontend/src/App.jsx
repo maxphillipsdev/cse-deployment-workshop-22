@@ -1,28 +1,20 @@
 import React from 'react';
 import './App.css';
 
-const baseURL = () => {
-  return new URL(
-    'https://cse-deployment-workshop-22-production.up.railway.app/'
-  );
-};
+const BASE_URL = '/api';
 
 function App() {
   const [results, setResults] = React.useState([]);
 
   const fetchResults = async () => {
-    const endpoint = new URL('results', baseURL());
     setResults([]);
-
-    fetch(endpoint.toString())
+    fetch(`${BASE_URL}/results`)
       .then((res) => res.json())
       .then((data) => setResults(data));
   };
 
   const handleClick = async (crewmate) => {
-    const endpoint = new URL('vote', baseURL());
-
-    await fetch(endpoint.toString(), {
+    await fetch(`${BASE_URL}/vote`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
