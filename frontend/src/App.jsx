@@ -28,19 +28,31 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Who is sus?</h1>
-        {results &&
-          results.map((result) => (
-            <div key={result.crewmate}>
-              <p>
-                {result.crewmate}
-                {result.votes && `: ${result.votes} votes.`}
-              </p>
-              <button onClick={() => handleClick(result.crewmate)}>Vote</button>
-            </div>
-          ))}
+        {/*  embed a gif */}
+        <img src="https://media.tenor.com/9t6T1DT0oFUAAAAC/sussy-imposter-sussy.gif" />
+        <div className="results">
+          {results &&
+            results.map((result) => (
+              <Result
+                key={result.crewmate}
+                result={result}
+                handleClick={handleClick}
+              />
+            ))}
+        </div>
       </header>
     </div>
   );
 }
+
+const Result = ({ result, handleClick }) => {
+  return (
+    <div>
+      <p>{result.crewmate}</p>
+      <p>{result.votes && `${result.votes} votes`}</p>
+      <button onClick={() => handleClick(result.crewmate)}>Vote</button>
+    </div>
+  );
+};
 
 export default App;
