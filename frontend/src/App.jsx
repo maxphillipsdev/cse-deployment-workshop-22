@@ -1,18 +1,26 @@
 import React from 'react';
 import './App.css';
 
+const baseURL = () => {
+  return new URL(process.env.BACKEND_URI);
+};
+
 function App() {
   const [results, setResults] = React.useState([]);
 
   const fetchResults = async () => {
+    const endpoint = new URL('results', baseURL());
     setResults([]);
-    fetch(`/api/results`)
+
+    fetch(endpoint.toString())
       .then((res) => res.json())
       .then((data) => setResults(data));
   };
 
   const handleClick = async (crewmate) => {
-    await fetch(`/api/vote`, {
+    const endpoint = new URL('vote', baseURL());
+
+    await fetch(endpoint.toString(), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
